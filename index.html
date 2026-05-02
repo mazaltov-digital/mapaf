@@ -4,39 +4,99 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Quero Meu Milagre - MAPAF</title>
+    <!-- Ícones para Redes Sociais -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         body { font-family: 'Arial', sans-serif; text-align: center; background-color: #f4f4f4; margin: 0; padding: 0; }
-        .container { max-width: 500px; margin: 50px auto; background: white; padding: 30px; border-radius: 15px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
-        h1 { color: #d32f2f; }
-        input, textarea { width: 100%; padding: 12px; margin: 10px 0; border: 1px solid #ccc; border-radius: 5px; box-sizing: border-box; }
-        button { background-color: #d32f2f; color: white; padding: 15px; border: none; width: 100%; border-radius: 5px; cursor: pointer; font-size: 18px; font-weight: bold; }
-        .footer { margin-top: 20px; font-size: 14pt; color: #555; }
+        .container { max-width: 500px; margin: 40px auto; background: white; padding: 30px; border-radius: 15px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
+        h1 { color: #d32f2f; font-size: 24px; }
+        p { color: #333; line-height: 1.5; }
+        input, textarea { width: 100%; padding: 12px; margin: 10px 0; border: 1px solid #ccc; border-radius: 5px; box-sizing: border-box; font-size: 16px; }
+        button { background-color: #d32f2f; color: white; padding: 15px; border: none; width: 100%; border-radius: 5px; cursor: pointer; font-size: 18px; font-weight: bold; transition: 0.3s; }
+        button:hover { background-color: #b71c1c; }
+        #status { margin-top: 15px; font-weight: bold; }
+        .footer { margin-top: 30px; padding-top: 20px; border-top: 1px solid #eee; font-size: 14px; color: #555; }
+        .social-icons { margin-top: 15px; }
         .social-icons a { margin: 0 10px; color: #d32f2f; font-size: 24px; text-decoration: none; }
+        .mapaf-brand { font-weight: bold; color: #d32f2f; margin-bottom: 5px; }
     </style>
 </head>
 <body>
     <div class="container">
+        <!-- Títulos baseados no convite original -->
         <h1>😘 QUERO MEU MILAGRE! 😍</h1>
-        <p>Apresente seu pedido em oração. Estamos com você!</p>
+        <p>Apresente seu pedido em oração. O Ministério MAPAF está unido com você em fé para um novo ciclo de vitórias!</p>
         
-        <!-- Substitua 'SEU_EMAIL' pelo seu ID do Formspree -->
-        <form action="https://formspree.io/f/xjglggny" method="POST">
-            <input type="text" name="nome" placeholder="Seu Nome Completo" required>
-            <input type="text" name="contato" placeholder="Seu WhatsApp (92) 99999-9999" required>
-            <textarea name="pedido" rows="5" placeholder="Escreva aqui seu Pedido de Oração" required></textarea>
-            <input type="hidden" name="_next" value="https://mazaltov-digital.github.io/mapaf/obrigado.html">
-            <button type="submit">ENVIAR PEDIDO DE MILAGRE</button>
+        <!-- FORMULÁRIO COM REDIRECIONAMENTO GRATUITO -->
+        <form id="form-milagre" action="https://formspree.io/f/xjglggny" method="POST">
+            <input type="text" name="Nome" placeholder="Seu Nome Completo" required>
+            <input type="text" name="WhatsApp" placeholder="Seu WhatsApp: (92) 99204-0897" required>
+            <textarea name="Pedido_de_Oracao" rows="5" placeholder="Escreva aqui seu Pedido de Oração..." required></textarea>
+            
+            <button type="submit" id="btn-enviar">ENVIAR PEDIDO DE MILAGRE</button>
+            <p id="status"></p>
         </form>
 
         <div class="footer">
-            <p><strong>📍 ENDEREÇO:</strong><br>Av. Curaçao, 51, Qd 3 - Nova Cidade, Manaus/AM</p>
+            <div class="mapaf-brand">MINISTÉRIO APOSTÓLICO AVIVAMENTO DA FÉ</div>
+            <p><strong>📍 ENDEREÇO EM MANAUS:</strong><br>
+            Av. Curaçao, 51, Qd 3 - Nova Cidade, Manaus/AM</p>
+            
             <div class="social-icons">
-                <a href="https://wa.me/5592996275699"><i class="fab fa-whatsapp"></i></a>
-                <a href="https://instagram.com/apostolodantas"><i class="fab fa-instagram"></i></a>
-                <a href="#"><i class="fab fa-facebook"></i> @mentoria voo aguias</a>
+                <a href="https://wa.me/5592992040897" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                <a href="https://instagram.com/apostolodantas" title="Instagram"><i class="fab fa-instagram"></i></a>
+                <a href="#" title="Facebook"><i class="fab fa-facebook"></i></a>
             </div>
+            <p style="margin-top: 15px; font-style: italic;">"Crendo no impossível, vivendo o sobrenatural."</p>
         </div>
     </div>
+
+    <!-- SCRIPT DE REDIRECIONAMENTO AUTOMÁTICO (PLANO GRATUITO) -->
+    <script>
+        const formulario = document.getElementById("form-milagre");
+        
+        async function lidarComEnvio(event) {
+            event.preventDefault(); // Impede o comportamento padrão de abrir a página do Formspree
+            
+            const status = document.getElementById("status");
+            const botao = document.getElementById("btn-enviar");
+            const dados = new FormData(event.target);
+            
+            botao.disabled = true;
+            botao.innerHTML = "Enviando para o Altar...";
+            
+            fetch(event.target.action, {
+                method: formulario.method,
+                body: dados,
+                headers: {
+                    'Accept': 'application/json'
+                }
+            }).then(response => {
+                if (response.ok) {
+                    // REDIRECIONAMENTO PARA A PÁGINA DE OBRIGADO NO GITHUB
+                    window.location.href = "obrigado.html";
+                } else {
+                    response.json().then(data => {
+                        if (Object.hasOwn(data, 'errors')) {
+                            status.style.color = "red";
+                            status.innerHTML = data["errors"].map(error => error["message"]).join(", ");
+                        } else {
+                            status.style.color = "red";
+                            status.innerHTML = "Ops! Ocorreu um erro no envio.";
+                        }
+                        botao.disabled = false;
+                        botao.innerHTML = "ENVIAR PEDIDO DE MILAGRE";
+                    })
+                }
+            }).catch(error => {
+                status.style.color = "red";
+                status.innerHTML = "Erro de conexão. Verifique sua internet.";
+                botao.disabled = false;
+                botao.innerHTML = "ENVIAR PEDIDO DE MILAGRE";
+            });
+        }
+        
+        formulario.addEventListener("submit", lidarComEnvio);
+    </script>
 </body>
 </html>
