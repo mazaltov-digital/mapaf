@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quero Meu Milagre - MAPAF</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        body { font-family: 'Arial', sans-serif; text-align: center; background-color: #f4f4f4; margin: 0; padding: 0; }
+        .container { max-width: 500px; margin: 50px auto; background: white; padding: 30px; border-radius: 15px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
+        h1 { color: #d32f2f; }
+        input, textarea { width: 100%; padding: 12px; margin: 10px 0; border: 1px solid #ccc; border-radius: 5px; box-sizing: border-box; }
+        button { background-color: #d32f2f; color: white; padding: 15px; border: none; width: 100%; border-radius: 5px; cursor: pointer; font-size: 18px; font-weight: bold; }
+        .footer { margin-top: 20px; font-size: 14pt; color: #555; }
+        .social-icons a { margin: 0 10px; color: #d32f2f; font-size: 24px; text-decoration: none; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>😘 QUERO MEU MILAGRE! 😍</h1>
+        <p>Apresente seu pedido em oração. Estamos com você!</p>
+        
+        <!-- Substitua 'SEU_EMAIL' pelo seu ID do Formspree -->
+        <form action="https://formspree.io/f/xjglggny" method="POST">
+            <input type="text" name="nome" placeholder="Seu Nome Completo" required>
+            <input type="text" name="contato" placeholder="Seu WhatsApp (92) 99999-9999" required>
+            <textarea name="pedido" rows="5" placeholder="Escreva aqui seu Pedido de Oração" required></textarea>
+            <input type="hidden" name="_next" value="https://seu-usuario.github.io/mapaf/obrigado.html">
+            <button type="submit">ENVIAR PEDIDO DE MILAGRE</button>
+        </form>
+
+        <div class="footer">
+            <p><strong>📍 ENDEREÇO:</strong><br>Av. Curaçao, 51, Qd 3 - Nova Cidade, Manaus/AM</p>
+            <div class="social-icons">
+                <a href="https://wa.me/5592996275699"><i class="fab fa-whatsapp"></i></a>
+                <a href="https://instagram.com/apostolodantas"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-facebook"></i> @mentoria voo aguias</a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
